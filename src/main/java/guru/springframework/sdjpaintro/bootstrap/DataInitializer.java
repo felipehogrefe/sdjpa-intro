@@ -20,10 +20,10 @@ public class DataInitializer implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        Book bookDDD = new Book("Domain Driven Desing", "123", "RandomHouse");
+        Book bookDDD = new Book("Domain Driven Desing", "123", "RandomHouse", null);
         if(bookRepository.findOne(Example.of(bookDDD)).isEmpty()){ bookRepository.save(bookDDD); }
 
-        Book bookSIA = new Book("Spring In Action", "123456", "Oriely");
+        Book bookSIA = new Book("Spring In Action", "123456", "Oriely", null);
         if(bookRepository.findOne(Example.of(bookSIA)).isEmpty()){ bookRepository.save(bookSIA); }
 
         System.out.println(bookRepository.findByTitle("Domain Driven Desing").getTitle());

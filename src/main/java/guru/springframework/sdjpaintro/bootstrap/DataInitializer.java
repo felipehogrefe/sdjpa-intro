@@ -1,6 +1,8 @@
 package guru.springframework.sdjpaintro.bootstrap;
 
+import guru.springframework.sdjpaintro.domain.AuthorUuid;
 import guru.springframework.sdjpaintro.domain.Book;
+import guru.springframework.sdjpaintro.repositories.AuthorUuidRepository;
 import guru.springframework.sdjpaintro.repositories.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -13,9 +15,11 @@ import org.springframework.stereotype.Component;
 public class DataInitializer implements CommandLineRunner {
 
     private final BookRepository bookRepository;
+    private final AuthorUuidRepository authorUuidRepository;
 
-    public DataInitializer(BookRepository bookRepository) {
+    public DataInitializer(BookRepository bookRepository, AuthorUuidRepository authorUuidRepository) {
         this.bookRepository = bookRepository;
+        this.authorUuidRepository = authorUuidRepository;
     }
 
     @Override
@@ -27,6 +31,15 @@ public class DataInitializer implements CommandLineRunner {
         if(bookRepository.findOne(Example.of(bookSIA)).isEmpty()){ bookRepository.save(bookSIA); }
 
         System.out.println(bookRepository.findByTitle("Domain Driven Desing").getTitle());
+
+        authorUuidRepository.deleteAll();
+
+        AuthorUuid authorUuid = new AuthorUuid();
+        authorUuid.setFirstName("Joe");
+        authorUuid.setLastName("Buck");
+        AuthorUuid savedAuthorUuid = authorUuidRepository.save(authorUuid);
+        System.out.println("Saved Author UUID: " + savedAuthorUuid.getId());
+
 
     }
 }

@@ -11,4 +11,7 @@
     <include  file="db/changelog/init-hibernate.xml"/>
     <include  file="db/changelog/addauthor-changelog.xml"/>
     <include  file="db/changelog/addauthor-tobook-changelog.xml"/>
+    <include  file="db/changelog/changebookidgentype-changelog.xml"/>
+    <include  file="db/changelog/changeauthoridgentype-changelog.xml"/>
+    <include  file="db/changelog/drophibernatesequence-changelog.xml"/>
 </databaseChangeLog>
